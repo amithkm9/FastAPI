@@ -64,3 +64,10 @@ def files_upload(file : UploadFile):
 @app.post("/form/data/filedata")
 def form_dataupload(file1:UploadFile, file2:bytes = File(), name:str = Form()):
     return({"file_name":file1.filename,"file2_bytes":len(file2),"name": name})
+
+#http exception
+@app.get('/error/handling')
+def handle_error(item:int):
+    if item==2:
+        return HTTPException(status_code=400,detail="item is not equal tp 2 try another value")
+    return ("value",item)
