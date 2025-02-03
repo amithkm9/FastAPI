@@ -60,3 +60,7 @@ def files_bytes(file:bytes = File()):
 def files_upload(file : UploadFile):
     return ({"File_name":file.filename,"file_content_name":file.content_type})
 
+#combining all 3 (form,file,uploading)
+@app.post("/form/data/filedata")
+def form_dataupload(file1:UploadFile, file2:bytes = File(), name:str = Form()):
+    return({"file_name":file1.filename,"file2_bytes":len(file2),"name": name})
